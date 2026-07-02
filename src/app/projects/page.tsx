@@ -1,8 +1,14 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import type { Metadata } from 'next'
 import { projects } from '@/data/projects'
 import { MapPin, Construction } from 'lucide-react'
+import Link from 'next/link'
+import FadeIn from '@/components/ui/FadeIn'
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description:
+    'MOU Construction project portfolio — industrial and residential mega-infrastructure across Bangladesh.',
+}
 
 export default function ProjectsPage() {
   return (
@@ -20,7 +26,7 @@ export default function ProjectsPage() {
 
         <div className="grid md:grid-cols-2 gap-12">
           {projects.map((p, i) => (
-            <motion.div 
+            <FadeIn
               key={p.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -29,10 +35,12 @@ export default function ProjectsPage() {
               className="group bg-black border-4 border-white shadow-[15px_15px_0px_rgba(255,255,255,0.05)] overflow-hidden"
             >
               <div className="relative h-[400px]">
-                <img 
-                  src={p.image} 
+                <img
+                  src={p.image}
                   alt={p.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-6 left-6 bg-industrial-orange text-black px-4 py-1 text-heavy text-sm border-2 border-black">
                   {p.status}
@@ -46,17 +54,20 @@ export default function ProjectsPage() {
                   </div>
                   <Construction className="w-8 h-8 text-slate-700" />
                 </div>
-                
+
                 <div className="flex items-center gap-3 text-slate-400">
                   <MapPin className="w-5 h-5 text-industrial-orange" />
                   <span className="text-heavy text-sm tracking-widest">{p.location}</span>
                 </div>
 
-                <button className="w-full py-4 border-2 border-white text-heavy hover:bg-white hover:text-black transition-all">
+                <Link
+                  href="/#contact"
+                  className="block text-center w-full py-4 border-2 border-white text-heavy hover:bg-white hover:text-black transition-all"
+                >
                   VIEW FULL BLUEPRINT
-                </button>
+                </Link>
               </div>
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
       </div>

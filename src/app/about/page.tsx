@@ -1,27 +1,32 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import type { Metadata } from 'next'
 import { ShieldCheck, Wrench, Factory } from 'lucide-react'
+import FadeIn from '@/components/ui/FadeIn'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'MOU Construction — the iron backbone of modern infrastructure. 15+ years building national mega-structures across Bangladesh.',
+}
+
+const values = [
+  {
+    title: 'Unyielding Safety',
+    desc: 'Zero compromise on human lives. Every site is fortified with maximum security protocols.',
+    icon: <ShieldCheck className="w-12 h-12 text-industrial-orange" />,
+  },
+  {
+    title: 'Precision Power',
+    desc: "Using the world's most advanced heavy machinery to deliver pixel-perfect structural integrity.",
+    icon: <Wrench className="w-12 h-12 text-industrial-orange" />,
+  },
+  {
+    title: 'Industrial Scale',
+    desc: 'Capable of managing multi-billion taka projects with automated logistics and supply chain.',
+    icon: <Factory className="w-12 h-12 text-industrial-orange" />,
+  },
+]
 
 export default function AboutPage() {
-  const values = [
-    {
-      title: "Unyielding Safety",
-      desc: "Zero compromise on human lives. Every site is fortified with maximum security protocols.",
-      icon: <ShieldCheck className="w-12 h-12 text-industrial-orange" />
-    },
-    {
-      title: "Precision Power",
-      desc: "Using the world's most advanced heavy machinery to deliver pixel-perfect structural integrity.",
-      icon: <Wrench className="w-12 h-12 text-industrial-orange" />
-    },
-    {
-      title: "Industrial Scale",
-      desc: "Capable of managing multi-billion taka projects with automated logistics and supply chain.",
-      icon: <Factory className="w-12 h-12 text-industrial-orange" />
-    }
-  ]
-
   return (
     <div className="pt-40 pb-20 px-4">
       <div className="max-w-7xl mx-auto">
@@ -57,10 +62,12 @@ export default function AboutPage() {
           <div className="relative">
             <div className="absolute -inset-4 bg-caution -z-10 rotate-3 opacity-20" />
             <div className="brutalist-border overflow-hidden h-[600px] bg-slate-900">
-              <img 
-                src="https://images.unsplash.com/photo-1541913080211-4712ca3c0480?auto=format&fit=crop&q=80" 
+              <img
+                src="https://images.unsplash.com/photo-1541913080211-4712ca3c0480?auto=format&fit=crop&q=80"
                 className="w-full h-full object-cover grayscale"
-                alt="Architecture"
+                alt="Modern high-rise architecture"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -68,8 +75,8 @@ export default function AboutPage() {
 
         <section className="grid md:grid-cols-3 gap-12">
           {values.map((v, i) => (
-            <motion.div 
-              key={i}
+            <FadeIn
+              key={v.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -81,7 +88,7 @@ export default function AboutPage() {
               </div>
               <h4 className="text-3xl text-heavy italic uppercase">{v.title}</h4>
               <p className="text-slate-500 font-medium">{v.desc}</p>
-            </motion.div>
+            </FadeIn>
           ))}
         </section>
       </div>

@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MOU Construction — Corporate Website
+
+A high-fidelity, industrial-brutalist marketing site for **MOU Construction**, a
+heavy-engineering and infrastructure firm. Built as a statically exported
+Next.js application.
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router), static export (`output: 'export'`)
+- **UI:** React 19, Tailwind CSS 3
+- **Animation:** Framer Motion
+- **Forms:** React Hook Form + Zod
+- **Icons:** lucide-react
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Production build → static site in `out/` |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Environment
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local` and set:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `NEXT_PUBLIC_CONTACT_ENDPOINT` — a form backend URL (e.g. Formspree / Web3Forms)
+  the Contact form POSTs to. If unset, the form validates and shows a success
+  state but does **not** transmit (dev-only fallback).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+  app/            # Routes: / (home), /about, /machinery, /projects
+  components/
+    home/         # Hero, Services, Contact, IndustrialMarquee
+    layout/       # Navbar, Footer
+    ui/           # FadeIn (shared client-side motion wrapper)
+  data/           # projects & services content
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`output: 'export'` produces a fully static site in `out/`, deployable to any
+static host (Vercel, Netlify, GitHub Pages, S3/CloudFront, etc.):
+
+```bash
+npm run build   # generates ./out
+```
+
+## Notes
+
+- Demo imagery is loaded from Unsplash — replace with owned assets before production.
+- Content (projects, machinery, contact details) is placeholder; edit in `src/data/` and the relevant components.

@@ -1,36 +1,42 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import type { Metadata } from 'next'
 import { Tractor, Truck, Construction, Settings } from 'lucide-react'
+import Link from 'next/link'
+import FadeIn from '@/components/ui/FadeIn'
+
+export const metadata: Metadata = {
+  title: 'Machinery',
+  description:
+    'Heavy assets and industrial machinery inventory powering MOU Construction mega-projects.',
+}
+
+const inventory = [
+  {
+    name: 'T-900 Heavy Excavator',
+    specs: '50 Ton Capacity // Deep Reach Arm',
+    category: 'Excavation',
+    icon: <Tractor className="w-10 h-10" />,
+  },
+  {
+    name: 'Iron-Max 500 Crane',
+    specs: '200m Vertical Reach // 100 Ton Hook',
+    category: 'Lifting',
+    icon: <Construction className="w-10 h-10" />,
+  },
+  {
+    name: 'Goliath Mixer',
+    specs: 'Continuous Flow // High-Grade Concrete',
+    category: 'Concreting',
+    icon: <Settings className="w-10 h-10" />,
+  },
+  {
+    name: 'Rapid-Haul Logistics',
+    specs: '24/7 Supply Chain Integration',
+    category: 'Transport',
+    icon: <Truck className="w-10 h-10" />,
+  },
+]
 
 export default function MachineryPage() {
-  const inventory = [
-    {
-      name: "T-900 Heavy Excavator",
-      specs: "50 Ton Capacity // Deep Reach Arm",
-      category: "Excavation",
-      icon: <Tractor className="w-10 h-10" />
-    },
-    {
-      name: "Iron-Max 500 Crane",
-      specs: "200m Vertical Reach // 100 Ton Hook",
-      category: "Lifting",
-      icon: <Construction className="w-10 h-10" />
-    },
-    {
-      name: "Goliath Mixer",
-      specs: "Continuous Flow // High-Grade Concrete",
-      category: "Concreting",
-      icon: <Settings className="w-10 h-10" />
-    },
-    {
-      name: "Rapid-Haul Logistics",
-      specs: "24/7 Supply Chain Integration",
-      category: "Transport",
-      icon: <Truck className="w-10 h-10" />
-    }
-  ]
-
   return (
     <div className="pt-40 pb-20 px-4">
       <div className="max-w-7xl mx-auto">
@@ -46,11 +52,12 @@ export default function MachineryPage() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {inventory.map((item, i) => (
-            <motion.div 
-              key={i}
+            <FadeIn
+              key={item.name}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
               className="bg-black border-4 border-industrial-orange p-8 flex flex-col gap-6 group hover:bg-industrial-orange transition-all duration-300"
             >
               <div className="w-20 h-20 bg-industrial-orange text-black flex items-center justify-center border-4 border-white group-hover:bg-black group-hover:text-industrial-orange transition-colors">
@@ -63,7 +70,7 @@ export default function MachineryPage() {
                   <p className="text-sm font-bold text-slate-400 group-hover:text-black/80 transition-colors">{item.specs}</p>
                 </div>
               </div>
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
 
@@ -74,9 +81,12 @@ export default function MachineryPage() {
             <p className="text-slate-400 text-xl font-medium max-w-2xl">
               MOU Construction offers strategic equipment leasing for mega-projects. Contact our logistics hub for a direct requisition.
             </p>
-            <button className="px-12 py-5 bg-white text-black text-heavy text-xl hover:bg-industrial-orange transition-all border-4 border-black">
+            <Link
+              href="/#contact"
+              className="inline-block px-12 py-5 bg-white text-black text-heavy text-xl hover:bg-industrial-orange transition-all border-4 border-black"
+            >
               MACHINERY REQUISITION
-            </button>
+            </Link>
           </div>
         </section>
       </div>

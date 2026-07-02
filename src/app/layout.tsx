@@ -15,12 +15,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mouconstruct.com"),
   title: {
     default: "MOU Construction // Engineering Excellence",
-    template: "%s | MOU Construction"
+    template: "%s | MOU Construction",
   },
-  description: "Premier construction and infrastructure solutions provider in Bangladesh. Specializing in heavy duty engineering, high-rise development, and industrial steel complexes.",
-  keywords: ["construction", "engineering", "infrastructure", "Bangladesh", "real estate", "industrial development"],
+  description:
+    "Premier construction and infrastructure solutions provider in Bangladesh. Specializing in heavy duty engineering, high-rise development, and industrial steel complexes.",
+  keywords: [
+    "construction",
+    "engineering",
+    "infrastructure",
+    "Bangladesh",
+    "real estate",
+    "industrial development",
+  ],
   authors: [{ name: "IP TECH" }],
   openGraph: {
     title: "MOU Construction // Engineering Excellence",
@@ -44,12 +53,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-concrete">
         <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>
   );
 }
-
