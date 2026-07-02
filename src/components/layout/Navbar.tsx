@@ -13,10 +13,12 @@ export default function Navbar() {
           </div>
           <span className="text-xl md:text-3xl text-heavy tracking-tighter">MOU <span className="text-industrial-orange hidden xs:inline">CONSTRUCTION</span><span className="text-industrial-orange xs:hidden">CONS.</span></span>
         </Link>
-        
+
         <div className="flex items-center gap-4 md:gap-10 text-[10px] md:text-sm text-heavy">
           <Link href="/projects" className="hover:text-industrial-orange transition-colors hidden sm:block">Project Hub</Link>
-          <a href="#contact" className="px-4 py-2 md:px-8 md:py-3 bg-white text-black hover:bg-industrial-orange transition-all border-2 border-black">COMMAND CENTER</a>
+          <Link href="/machinery" className="hover:text-industrial-orange transition-colors hidden sm:block">Machinery</Link>
+          <Link href="/about" className="hover:text-industrial-orange transition-colors hidden sm:block">About</Link>
+          <Link href="/#contact" className="px-4 py-2 md:px-8 md:py-3 bg-white text-black hover:bg-industrial-orange transition-all border-2 border-black">COMMAND CENTER</Link>
         </div>
       </div>
     </nav>

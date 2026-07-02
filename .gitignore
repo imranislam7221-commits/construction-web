@@ -29,13 +29,20 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
+
+# core dumps / crash artifacts
+core
+core.*
+*.core
 
 # env files (can opt-in for committing if needed)
 .env*
-
-# vercel
-.vercel
+!.env.example
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# vercel
+.vercel

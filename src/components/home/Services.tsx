@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import { services } from '@/data/services'
 
 export default function Services() {
@@ -20,28 +21,28 @@ export default function Services() {
 
         <div className="grid md:grid-cols-2 gap-12">
           {services.map((s, i) => (
-            <motion.div 
-              key={i}
+            <motion.div
+              key={s.title}
               initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
-              whileHover={{ 
-                scale: 1.02, 
-                backgroundColor: "rgba(245, 158, 11, 0.05)",
-                borderColor: "#f59e0b"
+              whileHover={{
+                scale: 1.02,
+                backgroundColor: 'rgba(245, 158, 11, 0.05)',
+                borderColor: '#f59e0b',
               }}
               className="bg-black border-4 border-white p-10 flex flex-col md:flex-row gap-10 shadow-[15px_15px_0px_rgba(255,255,255,0.05)] transition-colors"
             >
-              <div className="w-24 h-24 shrink-0 bg-industrial-orange flex items-center justify-center border-4 border-black group-hover:scale-110 transition-transform">
+              <div className="w-24 h-24 shrink-0 bg-industrial-orange flex items-center justify-center border-4 border-black">
                 {s.icon}
               </div>
               <div className="space-y-4">
                 <h4 className="text-3xl text-heavy italic underline decoration-industrial-orange underline-offset-8">{s.title}</h4>
                 <p className="text-slate-400 font-medium leading-relaxed">{s.desc}</p>
-                <button className="group flex items-center gap-4 text-heavy text-industrial-orange">
+                <Link href="#contact" className="group inline-flex items-center gap-4 text-heavy text-industrial-orange">
                   SPECIFICATIONS <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-                </button>
+                </Link>
               </div>
             </motion.div>
           ))}
